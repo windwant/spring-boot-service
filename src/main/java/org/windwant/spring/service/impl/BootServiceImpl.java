@@ -1,5 +1,6 @@
 package org.windwant.spring.service.impl;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
@@ -11,9 +12,9 @@ import org.springframework.stereotype.Service;
 import org.windwant.spring.Constants;
 import org.windwant.spring.mapper.MySelMapper;
 import org.windwant.spring.mapper.MySelRMapper;
-import org.windwant.spring.model.Guest;
-import org.windwant.spring.model.Response;
-import org.windwant.spring.model.User;
+import org.windwant.spring.mapper.ScoreStuMapper;
+import org.windwant.spring.mapper.StuScoreMapper;
+import org.windwant.spring.model.*;
 import org.windwant.spring.service.BootService;
 import org.windwant.spring.util.LangUtil;
 
@@ -106,5 +107,26 @@ public class BootServiceImpl implements BootService {
             token.clear();
             return Response.response(-1, msg);//重新登录
         }
+    }
+
+
+    @Autowired
+    ScoreStuMapper scoreStuMapper;
+
+    @Autowired
+    StuScoreMapper stuScoreMapper;
+
+    @Override
+    public Score getScoreById(int id) {
+        Score score = scoreStuMapper.selectScoreByIdXML(id);
+        logger.info("xml mapper score: {}", ToStringBuilder.reflectionToString(score));
+        return scoreStuMapper.selectScoreById(id);
+    }
+
+    @Override
+    public Stu getStuById(int id) {
+        Stu stuXml = stuScoreMapper.selectStuByIdXML(id);
+        logger.info("xml mapper stu: {}", ToStringBuilder.reflectionToString(stuXml));
+        return stuScoreMapper.selectStuById(id);
     }
 }
