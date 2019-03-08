@@ -7,20 +7,35 @@ import org.springframework.beans.factory.FactoryBean;
 
 import java.lang.reflect.Proxy;
 
-public class MapperFactoryBeanProxy implements FactoryBean {
+/**
+ * Mapper 代理 工厂类，用于生成mapper接口相应的代理类
+ *
+ * 此处作为 MapperFactoryBean 的外一层包装
+ * 内部处理一些MaperProxy相关的操作
+ */
+public class MapperProxyFactoryBean implements FactoryBean {
 
     private Class<?> mapperInterface;
 
+    /**
+     * 可以注入mapper接口的工厂类
+     */
     private MapperFactoryBean mapperFactoryBean;
 
-    public MapperFactoryBeanProxy(Class<?> mapperInterface) {
+    public MapperProxyFactoryBean(Class<?> mapperInterface) {
         this.mapperInterface = mapperInterface;
         mapperFactoryBean = new MapperFactoryBean<>(mapperInterface);
     }
 
+    /**
+     * 返回mapper代理
+     * @return
+     * @throws Exception
+     */
     @Override
     public Object getObject() throws Exception {
         mapperFactoryBean.afterPropertiesSet();
+        //getObject(): getSqlSession().getMapper(this.mapperInterface);
         Object object = mapperFactoryBean.getObject();
         return Proxy.newProxyInstance(getClass().getClassLoader(),
                 new Class<?>[]{mapperFactoryBean.getMapperInterface()},

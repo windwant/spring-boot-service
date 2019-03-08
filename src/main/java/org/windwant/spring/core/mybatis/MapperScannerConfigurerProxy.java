@@ -8,6 +8,9 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 
+/**
+ * 扫描相应包路径下的接口（至少包含一个方法），注册为 MapperFactoryBean
+ */
 public class MapperScannerConfigurerProxy extends MapperScannerConfigurer {
 
     @Override
@@ -20,6 +23,7 @@ public class MapperScannerConfigurerProxy extends MapperScannerConfigurer {
                 continue;
             }
 
+            //用于用户自定义bean定义，
             GenericBeanDefinition genericBeanDefinition = (GenericBeanDefinition) beanDefinition;
             if (!genericBeanDefinition.hasBeanClass()) {
                 continue;
@@ -29,7 +33,8 @@ public class MapperScannerConfigurerProxy extends MapperScannerConfigurer {
                 continue;
             }
 
-            genericBeanDefinition.setBeanClass(MapperFactoryBeanProxy.class);
+            //用于MapperProxyFactoryBean定义，替换 MapperFactoryBean
+            genericBeanDefinition.setBeanClass(MapperProxyFactoryBean.class);
             genericBeanDefinition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
         }
     }
