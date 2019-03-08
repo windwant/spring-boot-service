@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.windwant.spring</groupId>
-  <artifactId>spring-boot-service</artifactId>
+  <artifactId>spring-boot-server</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>spring-boot-service</name>
+  <name>spring-boot-server</name>
   <url>http://maven.apache.org</url>
 
   <properties>

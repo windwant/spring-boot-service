@@ -1,6 +1,6 @@
-# spring-boot-service
+# spring-boot-server
 
-## springboot maven项目
+## spring-boot maven项目
 
 #### 1. servlet、listener、interceptor、filter配置
 #### 2. mybatis配置集成，多数据源
@@ -59,8 +59,3 @@
     ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
     测试：/stu/1  /score/1
-
-
-# spring-boot-amqp
-
-springboot 中间件

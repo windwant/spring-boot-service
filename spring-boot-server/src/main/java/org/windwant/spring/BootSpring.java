@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 @EnableAutoConfiguration
 @PropertySource({"classpath:config.properties"})
 @PropertySource({"classpath:application.yml"})
-@EnableScheduling //定时任务
+//@EnableScheduling //定时任务
 public class BootSpring
 {
     public static void main( String[] args )

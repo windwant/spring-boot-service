@@ -22,6 +22,15 @@
         </fileSet>
 
         <fileSet>
+            <directory>${project.basedir}</directory>
+            <outputDirectory>lib</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <filtered>false</filtered>
+        </fileSet>
+
+        <fileSet>
             <directory>${project.build.directory}/classes</directory>
             <outputDirectory>/</outputDirectory>
             <includes>

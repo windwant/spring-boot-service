@@ -1,3 +1,4 @@
 .idea/
-target/
+spring-boot-server/target/
+spring-boot-amqp/target/
 *.iml
